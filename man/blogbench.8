@@ -1,0 +1,33 @@
+.TH "blogbench" "8" "1.0" "Frank Denis" "Benchmarks"
+.SH "NAME"
+.LP 
+blogbench \- a realistic filesystem benchmark
+.SH "SYNTAX"
+.LP 
+blogbench \fI\-d\fP <\fIdirectory\fP>
+.SH "DESCRIPTION"
+.LP 
+Blogbench is a portable filesystem benchmark that tries to reproduce the load
+of a real\-world busy file server.
+.br 
+It stresses the filesystem with multiple threads performing random reads,
+writes and rewrites in order to get a realistic idea of the scalability and the
+concurrency a system can handle.
+.SH "OPTIONS"
+.LP 
+.TP 
+\fB\-\-help\fR
+Display a complete list of available switches.
+.SH "EXAMPLES"
+.LP 
+The minimal way to run the test is to just give the path to an \fBempty\fR
+and writable directory:
+.LP 
+blogbench \-d /path/to/the/directory
+.LP 
+Blogbench will start the required threads and the test will run during 5
+minutes. A final "score" will then be given as an indication of read and write
+performance.
+.SH "AUTHORS"
+.LP 
+Frank Denis <j@pureftpd.org>

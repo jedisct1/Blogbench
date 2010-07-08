@@ -1,0 +1,96 @@
+
+                               .:. Blogbench .:.
+                         Documentation for version 1.1
+                         http://blogbench.pureftpd.org
+
+
+           ------------------------ BLURB ------------------------
+
+
+Blogbench is a portable filesystem benchmark that tries to reproduce the load
+of a real-world busy file server.
+
+It stresses the filesystem with multiple threads performing random reads,
+writes and rewrites in order to get a realistic idea of the scalability and the
+concurrency a system can handle. 
+
+
+        ------------------------ COMPILATION ------------------------
+
+
+Follow the boring traditional procedure:
+
+./configure
+make install-strip
+
+For details, have a look at the INSTALL file.
+
+The software has been successfully tested on Linux 2.6, OpenBSD and
+DragonFlyBSD. But it should work on any system with an implementation of POSIX
+threads.
+
+
+         ------------------------ BASIC USAGE ------------------------
+
+
+The minimal way to run the test is to just give the path to an *empty*
+and writable directory:
+
+blogbench -d /path/to/the/directory
+
+Blogbench will start the required threads and the test will run during 5
+minutes. A final "score" will then be given as an indication of read and write
+performance.
+
+
+           ------------------------ DETAILS ------------------------
+
+
+Blogbench was initially designed to mimic the behavior of the Skyblog.com
+blog service.
+
+4 different types of threads are started:
+
+- The writers. They create new blogs (directories) with a random amount of
+fake articles and fake pictures.
+
+- The rewriters. They add or they modify articles and pictures of existing
+blogs.
+
+- The "commenters". They add fake comments to existing blogs in random order.
+
+- The readers. They read articles, pictures and comments of random blogs. They
+sometimes even try to access non-existent files.
+
+New files are written atomically. The content is pushed with 8 Kb chunks in a
+temporary file that gets renamed if everything completes. 8 Kb is the default
+PHP buffer size for writes.
+
+Reads are performed with a 64 Kb buffer.
+
+Concurrent writers and rewriters can quickly create fragmentation if the
+preallocation is not optimal. But it is very interesting to check how
+different filesystems reacts to fragmentation.
+
+Every blog is a new directory withing the same parent directory. Since some
+filesystems are unable to manage more than 32k or 64k links to the same
+directory (an example is UFS), you should not force the test to run a silly
+amount of time on these filesystems.
+
+
+       ------------------------ ADVANCED USAGE ------------------------
+
+
+By default, there are 3 concurrent writers, 1 rewriters, 100 readers and 5
+commenters.
+
+Statistics are shown every 10 seconds until 30 iterations.
+
+Command-line switches will let you change these values.
+
+Try: blogbench --help to get the list of available command-line switches.
+
+
+Thank you, 
+
+                        -Frank DENIS "Jedi/Sector One" <j@pureftpd.org> .
