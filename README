@@ -46,7 +46,7 @@ performance.
            ------------------------ DETAILS ------------------------
 
 
-Blogbench was initially designed to mimic the behavior of the Skyblog.com
+Blogbench was initially designed to mimic the behavior of the Skyrock.com
 blog service.
 
 4 different types of threads are started:
@@ -93,4 +93,4 @@ Try: blogbench --help to get the list of available command-line switches.
 
 Thank you, 
 
-                        -Frank DENIS "Jedi/Sector One" <j@pureftpd.org> .
+                        -Frank DENIS "Jedi/Sector One" <j at pureftpd.org> .
