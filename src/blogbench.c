@@ -15,7 +15,7 @@ static void usage(void)
           "--directory=<directory> (-d <directory>): working directory\n"
           "--help (-h): usage\n"
           "--iterations=<n> (-i <n>): number of iterations\n"
-          "--readers=<n> (-r <n>): number of writers\n"
+          "--readers=<n> (-r <n>): number of readers\n"
           "--rewriters=<n> (-W <n>): number of rewriters\n"
           "--sleep=<secs> (-s <secs>): delay after every iteration\n"
           "--writers=<n> (-w <n>): number of writers\n"
