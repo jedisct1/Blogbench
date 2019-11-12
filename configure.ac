@@ -2,6 +2,7 @@ AC_PREREQ(2.58)
 
 AC_INIT([blogbench],[1.1],[j at pureftpd.org])
 AM_INIT_AUTOMAKE([1.8 dist-bzip2])
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_LIBOBJ_DIR(src)
 
