@@ -72,11 +72,6 @@ AC_CHECK_TYPE(sig_atomic_t, , [AC_DEFINE(sig_atomic_t, signed char,
 #include <signal.h>
 ])
 
-dnl Check for typedefs, structures, and compiler characteristics.
-AC_PROG_GCC_TRADITIONAL
-AC_C_CONST
-AC_C_INLINE
-
 dnl Options
 
 AC_ARG_WITH(debug,
@@ -102,42 +97,9 @@ ACX_PTHREAD
 
 AC_CHECK_FUNCS(setrlimit setproctitle getopt_long)
 AC_CHECK_FUNCS(strtoull strtoq)
-AC_CHECK_FUNCS(snprintf vsnprintf vfprintf gethostname)
+AC_CHECK_FUNCS(gethostname)
 AC_CHECK_FUNCS(setlocale)
 AC_CHECK_FUNCS(sync)
-
-AC_MSG_CHECKING(whether snprintf is C99 conformant)
-AC_RUN_IFELSE([AC_LANG_SOURCE([[
-#include <stdio.h>
-#ifdef STDC_HEADERS
-# include <stdlib.h>
-# include <stddef.h>
-#else
-# if HAVE_STDLIB_H
-#  include <stdlib.h>
-# endif
-#endif
-#ifdef HAVE_UNISTD_H
-# include <unistd.h>
-#endif
-
-int main(void)
-{
-    char buf[4];
-    
-    (void) fprintf(fopen("conftestval", "w"), "%d\n",
-        (int) snprintf(buf, sizeof buf, "12345678"));
-    return 0;
-}
-]])],[CONF_SNPRINTF_TYPE=`cat conftestval`
-],[],[])
-AC_MSG_RESULT(done)
-if test "x$CONF_SNPRINTF_TYPE" = "x" ; then
-  AC_MSG_WARN(your operating system doesn't implement snprintf)
-else
-  AC_DEFINE_UNQUOTED(CONF_SNPRINTF_TYPE, $CONF_SNPRINTF_TYPE,
-                     [return value of an overflowed snprintf])
-fi
 
 LIBS="$PTHREAD_LIBS $LIBS"
 CFLAGS="$CFLAGS $PTHREAD_CFLAGS"

@@ -60,12 +60,6 @@
 #include <pthread.h>
 #include <fcntl.h>
 
-#include "mysnprintf.h"
-
-#ifndef errno
-extern int errno;
-#endif
-
 #ifdef HAVE_ALLOCA
 # ifdef HAVE_ALLOCA_H
 #  include <alloca.h>
