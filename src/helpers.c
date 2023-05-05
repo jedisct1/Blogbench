@@ -115,7 +115,7 @@ read_dummy_file(const char *const file_name)
     size_t    i;
     const int page_size = getpagesize();
     int       fd;
-    char      dummy;
+    char      dummy = 0;
 
     if ((fd = open(file_name, O_RDONLY)) == -1) {
         return -1;
