@@ -12,9 +12,6 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#ifdef HAVE_LOCALE_H
-#include <locale.h>
-#endif
 #include <errno.h>
 #include <limits.h>
 #include <signal.h>
