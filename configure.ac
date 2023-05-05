@@ -19,7 +19,6 @@ AC_SEARCH_LIBS([strerror],[cposix])
 
 AC_CHECK_HEADERS_ONCE([sys/time.h])
 AC_CHECK_HEADERS_ONCE([unistd.h])
-AC_CHECK_HEADERS_ONCE([sys/socket.h sys/time.h])
 AC_CHECK_HEADERS_ONCE([fcntl.h sys/fcntl.h sys/param.h])
 
 dnl Types
