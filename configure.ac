@@ -2,14 +2,10 @@ AC_PREREQ([2.71])
 
 AC_INIT([blogbench],[1.2],[https://github.com/jedisct1/Blogbench])
 AM_INIT_AUTOMAKE([1.8 dist-bzip2])
-AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_LIBOBJ_DIR(src)
 
 AC_SUBST(VERSION)
-
-ISODATE=`date +%Y-%m-%d`
-AC_SUBST(ISODATE)
 
 # Checks for programs.
 AC_PROG_CC
@@ -42,10 +38,6 @@ AC_ARG_WITH(debug,
 
 dnl Checks for library functions.
 AC_FUNC_ALLOCA
-AC_FUNC_MEMCMP
-AC_FUNC_STRFTIME
-AC_FUNC_STAT
-AC_FUNC_VPRINTF
 AX_PTHREAD([
   LIBS="$PTHREAD_LIBS $LIBS"
   CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
@@ -53,10 +45,8 @@ AX_PTHREAD([
   CXX="$PTHREAD_CXX"
 ])
 
-AC_CHECK_FUNCS(setrlimit setproctitle getopt_long)
+AC_CHECK_FUNCS(getopt_long)
 AC_CHECK_FUNCS(strtoull strtoq)
-AC_CHECK_FUNCS(gethostname)
-AC_CHECK_FUNCS(setlocale)
 AC_CHECK_FUNCS(sync)
 
 AC_SYS_LARGEFILE
