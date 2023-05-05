@@ -2,11 +2,11 @@
 #define __GLOBALS_H__ 1
 
 #ifdef DEFINE_GLOBALS
-# define GLOBAL0(A) A
-# define GLOBAL(A, B) A = B
+#define GLOBAL0(A)   A
+#define GLOBAL(A, B) A = B
 #else
-# define GLOBAL0(A) extern A
-# define GLOBAL(A, B) extern A
+#define GLOBAL0(A)   extern A
+#define GLOBAL(A, B) extern A
 #endif
 
 GLOBAL(pthread_mutex_t mx_next_blog_id, PTHREAD_MUTEX_INITIALIZER);
