@@ -1,5 +1,7 @@
 #include "blogbench.h"
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 unsigned long long
 get_new_blog_id(void)

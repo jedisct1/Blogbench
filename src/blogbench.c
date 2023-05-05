@@ -1,4 +1,6 @@
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 #define DEFINE_GLOBALS 1
 #include "blogbench.h"
 #ifndef HAVE_GETOPT_LONG

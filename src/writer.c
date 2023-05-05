@@ -1,5 +1,7 @@
 #include "blogbench.h"
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 static int
 create_articles(char *const              file_name,

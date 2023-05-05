@@ -1,5 +1,7 @@
 #include "blogbench.h"
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 static pthread_t *writers_threads;
 static pthread_t *rewriters_threads;

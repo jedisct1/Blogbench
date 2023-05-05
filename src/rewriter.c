@@ -1,5 +1,7 @@
 #include "blogbench.h"
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 static int
 modify_random_picture(const unsigned long long blog_id)
