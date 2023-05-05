@@ -1,6 +1,6 @@
 
                                .:. Blogbench .:.
-                         Documentation for version 1.1
+                         Documentation for version 1.2
                       https://github.com/jedisct1/Blogbench
 
 
@@ -18,14 +18,21 @@ concurrency a system can handle.
         ------------------------ COMPILATION ------------------------
 
 
-Follow the boring traditional procedure:
+* Option 1: compile with Zig:
 
+zig build -Drelease
+
+* Option 2:
+
+Follow the boring traditional autoconf/automake procedure:
+
+autoreconf
 ./configure
 make install-strip
 
 For details, have a look at the INSTALL file.
 
-The software has been successfully tested on Linux 2.6, OpenBSD and
+The software has been successfully tested on Linux, macOS, OpenBSD and
 DragonFlyBSD. But it should work on any system with an implementation of POSIX
 threads.
 
