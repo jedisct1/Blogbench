@@ -8,17 +8,17 @@
 #define __attribute__(a)
 #endif
 
+#include <errno.h>
+#include <limits.h>
+#include <signal.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
-#include <limits.h>
-#include <signal.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#if HAVE_SYS_TIME_H
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 #include <sys/stat.h>

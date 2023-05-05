@@ -18,6 +18,9 @@ AC_CHECK_HEADERS_ONCE([unistd.h])
 AC_CHECK_HEADERS_ONCE([fcntl.h sys/fcntl.h sys/param.h])
 
 dnl Types
+AC_TYPE_MODE_T
+AC_TYPE_SIZE_T
+AC_TYPE_SSIZE_T
 AC_CHECK_TYPE(sig_atomic_t, , [AC_DEFINE(sig_atomic_t, signed char,
                                          [sig_atomic_t type])],
 [
