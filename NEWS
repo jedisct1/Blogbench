@@ -4,7 +4,7 @@ Reported by Linus Torvalds, thanks!
 The project can also be built using Zig instead of autoconf/automake/make.
 
 * Version 1.1:
-Fixed crashes.
+Fix off-by-one that sometimes resulted in crashes.
 
 * Version 1.0:
 Initial release.

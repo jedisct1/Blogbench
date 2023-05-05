@@ -1,3 +1,8 @@
+* Version 1.2:
+Access the memory pages being read, which is more realistic that just filling a shared buffer.
+Reported by Linus Torvalds, thanks!
+The project can also be built using Zig instead of autoconf/automake/make.
+
 * Version 1.1:
 Fix off-by-one that sometimes resulted in crashes.
 
