@@ -1,4 +1,4 @@
-AC_PREREQ(2.58)
+AC_PREREQ([2.71])
 
 AC_INIT([blogbench],[1.1],[j at pureftpd.org])
 AM_INIT_AUTOMAKE([1.8 dist-bzip2])
@@ -14,19 +14,16 @@ AC_SUBST(ISODATE)
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
-AC_AIX
-AC_ISC_POSIX
+AC_USE_SYSTEM_EXTENSIONS
+AC_SEARCH_LIBS([strerror],[cposix])
 
-# Checks for header files.
-AC_HEADER_STDC
-AC_HEADER_TIME
-AC_CHECK_HEADERS([memory.h strings.h unistd.h])
-AC_CHECK_HEADERS([locale.h])
-AC_CHECK_HEADERS([stdlib.h string.h sys/socket.h sys/time.h])
-AC_CHECK_HEADERS([fcntl.h sys/fcntl.h sys/param.h ioctl.h sys/ioctl.h])
+AC_CHECK_HEADERS_ONCE([sys/time.h])
+AC_CHECK_HEADERS_ONCE([memory.h strings.h unistd.h])
+AC_CHECK_HEADERS_ONCE([locale.h])
+AC_CHECK_HEADERS_ONCE([stdlib.h string.h sys/socket.h sys/time.h])
+AC_CHECK_HEADERS_ONCE([fcntl.h sys/fcntl.h sys/param.h ioctl.h sys/ioctl.h])
 
 dnl Check for types
-AC_TYPE_SIGNAL
 AC_TYPE_SIZE_T
 AC_CHECK_TYPE(dev_t, , [AC_DEFINE(dev_t, unsigned int, [dev_t type])],
 [
@@ -93,7 +90,12 @@ AC_FUNC_MEMCMP
 AC_FUNC_STRFTIME
 AC_FUNC_STAT
 AC_FUNC_VPRINTF
-ACX_PTHREAD
+AX_PTHREAD([
+  LIBS="$PTHREAD_LIBS $LIBS"
+  CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
+  CC="$PTHREAD_CC"
+  CXX="$PTHREAD_CXX"
+])
 
 AC_CHECK_FUNCS(setrlimit setproctitle getopt_long)
 AC_CHECK_FUNCS(strtoull strtoq)
