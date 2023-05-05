@@ -108,11 +108,17 @@ create_atomic_file(const char *const file_name,
 int
 read_dummy_file(const char *const file_name)
 {
-    static char garbage[READ_CHUNK_SIZE];
-    ssize_t     readen;
-    int         fd;
+    char     *garbage;
+    ssize_t   readen;
+    size_t    i;
+    const int page_size = getpagesize();
+    int       fd;
+    char      dummy;
 
     if ((fd = open(file_name, O_RDONLY)) == -1) {
+        return -1;
+    }
+    if ((garbage = malloc(READ_CHUNK_SIZE)) == NULL) {
         return -1;
     }
     do {
@@ -123,7 +129,12 @@ read_dummy_file(const char *const file_name)
             reentrant_perror("read()");
             break;
         }
+        for (i = (size_t) 0U; i < READ_CHUNK_SIZE; i += page_size) {
+            dummy ^= garbage[i];
+        }
     } while (readen > (ssize_t) 0);
+    __asm__ __volatile__("" : : "r"(dummy));
+    free(garbage);
     if (close(fd) != 0) {
         reentrant_perror("close()");
         return -1;

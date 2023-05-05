@@ -19,10 +19,8 @@
 #include <limits.h>
 #include <signal.h>
 #include <string.h>
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
 #include <time.h>
+#include <unistd.h>
 #if HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
