@@ -7,9 +7,9 @@ pub fn build(b: *std.Build) void {
         .name = "blogbench",
         .target = target,
         .optimize = optimize,
+        .single_threaded = false,
     });
     exe.linkLibC();
-    exe.single_threaded = false;
     const source_files = &.{
         "src/blogbench.c",
         "src/commenter.c",
@@ -19,11 +19,7 @@ pub fn build(b: *std.Build) void {
         "src/rewriter.c",
         "src/writer.c",
     };
-    if (@hasDecl(std.Build.Step.Compile, "AddCSourceFilesOptions")) {
-        exe.addCSourceFiles(.{ .files = source_files });
-    } else {
-        exe.addCSourceFiles(source_files, &.{});
-    }
+    exe.addCSourceFiles(.{ .files = source_files });
     exe.defineCMacro("PACKAGE_STRING", "\"blogbench 1.2\"");
     exe.defineCMacro("PACKAGE_BUGREPORT", "\"https://github.com/jedisct1/Blogbench\"");
     exe.defineCMacro("HAVE_ALLOCA", "1");
