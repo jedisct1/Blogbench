@@ -20,15 +20,15 @@ pub fn build(b: *std.Build) void {
         "src/writer.c",
     };
     exe.addCSourceFiles(.{ .files = source_files });
-    exe.defineCMacro("PACKAGE_STRING", "\"blogbench 1.2\"");
-    exe.defineCMacro("PACKAGE_BUGREPORT", "\"https://github.com/jedisct1/Blogbench\"");
-    exe.defineCMacro("HAVE_ALLOCA", "1");
-    exe.defineCMacro("HAVE_FCNTL_H", "1");
-    exe.defineCMacro("HAVE_GETOPT_LONG", "1");
-    exe.defineCMacro("HAVE_SYNC", "1");
-    exe.defineCMacro("HAVE_STRTOULL", "1");
-    exe.defineCMacro("HAVE_SYS_PARAM_H", "1");
-    exe.defineCMacro("HAVE_SYS_TIME_H", "1");
+    exe.root_module.addCMacro("PACKAGE_STRING", "\"blogbench 1.2\"");
+    exe.root_module.addCMacro("PACKAGE_BUGREPORT", "\"https://github.com/jedisct1/Blogbench\"");
+    exe.root_module.addCMacro("HAVE_ALLOCA", "1");
+    exe.root_module.addCMacro("HAVE_FCNTL_H", "1");
+    exe.root_module.addCMacro("HAVE_GETOPT_LONG", "1");
+    exe.root_module.addCMacro("HAVE_SYNC", "1");
+    exe.root_module.addCMacro("HAVE_STRTOULL", "1");
+    exe.root_module.addCMacro("HAVE_SYS_PARAM_H", "1");
+    exe.root_module.addCMacro("HAVE_SYS_TIME_H", "1");
 
     b.installArtifact(exe);
     const run_cmd = b.addRunArtifact(exe);
