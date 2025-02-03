@@ -13,7 +13,7 @@
 static void
 usage(void)
 {
-    puts("\n" PACKAGE_STRING " - " __DATE__ "\n");
+    puts("\n" PACKAGE_STRING "\n");
     fputs(
         "--commenters=<n> (-c <n>): number of comments posters\n"
         "--directory=<directory> (-d <directory>): working directory\n"
