@@ -5,11 +5,13 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{ .preferred_optimize_mode = .ReleaseFast });
     const exe = b.addExecutable(.{
         .name = "blogbench",
-        .target = target,
-        .optimize = optimize,
-        .single_threaded = false,
+        .root_module = b.createModule(.{
+            .target = target,
+            .optimize = optimize,
+            .single_threaded = false,
+            .link_libc = true,
+        }),
     });
-    exe.linkLibC();
     const source_files = &.{
         "src/blogbench.c",
         "src/commenter.c",
@@ -19,7 +21,7 @@ pub fn build(b: *std.Build) void {
         "src/rewriter.c",
         "src/writer.c",
     };
-    exe.addCSourceFiles(.{ .files = source_files });
+    exe.root_module.addCSourceFiles(.{ .files = source_files });
     exe.root_module.addCMacro("PACKAGE_STRING", "\"blogbench 1.2\"");
     exe.root_module.addCMacro("PACKAGE_BUGREPORT", "\"https://github.com/jedisct1/Blogbench\"");
     exe.root_module.addCMacro("HAVE_ALLOCA", "1");
@@ -33,9 +35,7 @@ pub fn build(b: *std.Build) void {
     b.installArtifact(exe);
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
-    if (b.args) |args| {
-        run_cmd.addArgs(args);
-    }
+    run_cmd.addPassthruArgs();
     const run_step = b.step("run", "Run the app");
     run_step.dependOn(&run_cmd.step);
 }
