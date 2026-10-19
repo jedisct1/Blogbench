@@ -124,7 +124,7 @@ read_dummy_file(const char *const file_name)
         return -1;
     }
     do {
-        if ((readen = read(fd, garbage, sizeof garbage)) < (ssize_t) 0) {
+        if ((readen = read(fd, garbage, READ_CHUNK_SIZE)) < (ssize_t) 0) {
             if (errno == EINTR) {
                 continue;
             }
